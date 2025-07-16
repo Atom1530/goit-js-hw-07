@@ -1,33 +1,28 @@
 
-class StringBuilder{
-  #value = "";
-  constructor(initialValue) {
-    this.#value = initialValue;
-  }
+// Напиши скрипт, який під час набору тексту в інпуті input#name-input (подія input) підставляє його поточне значення в span#name-output як ім’я для привітання. Обов’язково очищай значення в інпуті по краях від пробілів . Якщо інпут порожній або містить лише пробіли, то замість імені у спан має підставлятися рядок "Anonymous".
 
-  getValue() {
-    return this.#value;
-  }
 
-  padEnd(str) {
-    this.#value = this.#value + str;
-  }
+const input = document.querySelector("#name-input");
+const output = document.querySelector("#name-output");
 
-  padStart(str) {
-    this.#value = str + this.#value;
-  }
+input.addEventListener("input", (e) => {
+    const name = e.target.value.trim();
 
-  padBoth(str) {
-    this.#value = str + this.#value + str
+    if (name === "") {
+        output.textContent = "Anonymous";
+    } else {
+        output.textContent = name;
   }
-}
+})
+/* <input type="text" id="name-input" placeholder="Please enter your name" />
+<h1>Hello, <span id="name-output">Anonymous</span>!</h1> */
 
-const builder = new StringBuilder(".");
-console.log(builder.getValue()); // "."
-builder.padStart("^");
-console.log(builder.getValue()); // "^."
-builder.padEnd("^");
-console.log(builder.getValue()); // "^.^"
-builder.padBoth("=");
-console.log(builder.getValue()); // "=^.^="
+// На що буде звертати увагу ментор при перевірці:
+
+// На елементі input#name-input прослуховується подія input
+// Під час набору тексту в інпуті його поточне значення підставляється в span#name-output як ім’я для привітання
+// Значення в інпуті очищене від пробілів по краях
+// Якщо інпут порожній або містить лише пробіли, то замість імені у спан має підставлятися рядок "Anonymous"
+
+
 
